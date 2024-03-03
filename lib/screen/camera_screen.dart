@@ -61,7 +61,7 @@ class _CameraScreenState extends State<CameraScreen>
     }
     final CameraController cameraController = CameraController(
       cameras[cameraIndex],
-      ResolutionPreset.medium,
+      ResolutionPreset.high,
       enableAudio: false,
       imageFormatGroup: ImageFormatGroup.jpeg,
     );
@@ -179,6 +179,7 @@ class _CameraScreenState extends State<CameraScreen>
     );
 
     if (bytes != null) {
+      log("compressed size: ${bytes.length / 1024} kb");
       pop(bytes: bytes);
     }
   }
