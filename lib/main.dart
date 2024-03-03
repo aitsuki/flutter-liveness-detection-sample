@@ -1,4 +1,5 @@
 import 'package:face/screen/camera_screen.dart';
+import 'package:face/screen/face_screen.dart';
 import 'package:face/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => const HomeScreen(),
-        "/camera": (context) => const CameraScreen()
+        "/camera": (context) => const CameraScreen(),
+        "/face":(context) => const FaceScreen(),
       },
       theme: ThemeData.dark(
         useMaterial3: true,

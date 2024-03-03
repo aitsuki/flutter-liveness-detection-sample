@@ -34,9 +34,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     child: const Text("Camera"))),
             SizedBox(
-                width: double.infinity,
-                child: FilledButton(
-                    onPressed: () => {}, child: const Text("Face"))),
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/face");
+                },
+                child: const Text("Face"),
+              ),
+            ),
             if (imagebytes != null) Image.memory(imagebytes!),
           ],
         ),

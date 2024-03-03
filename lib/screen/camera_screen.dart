@@ -253,8 +253,9 @@ class _CameraScreenState extends State<CameraScreen>
   Widget _cameraControllButtonGroup() {
     if (imageFile == null) {
       return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _actionButton(
+          IconButton(
             onPressed: () => pop(),
             icon: Image.asset(
               "assets/images/camera_back.png",
@@ -262,18 +263,15 @@ class _CameraScreenState extends State<CameraScreen>
               height: 48,
             ),
           ),
-          _actionButton(
+          IconButton(
             onPressed: onTakePictureButtonPressed,
-            icon: RotatedBox(
-              quarterTurns: 3,
-              child: Image.asset(
-                "assets/images/camera_take.png",
-                width: 66,
-                height: 66,
-              ),
+            icon: Image.asset(
+              "assets/images/camera_take.png",
+              width: 66,
+              height: 66,
             ),
           ),
-          _actionButton(
+          IconButton(
             onPressed: () {},
             icon: Image.asset(
               "assets/images/camera_flash_on.png",
@@ -285,8 +283,9 @@ class _CameraScreenState extends State<CameraScreen>
       );
     } else {
       return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _actionButton(
+          IconButton(
             onPressed: () {
               setState(() {
                 imageFile = null;
@@ -298,7 +297,7 @@ class _CameraScreenState extends State<CameraScreen>
               height: 48,
             ),
           ),
-          _actionButton(
+          IconButton(
             onPressed: useCurrentImage,
             icon: RotatedBox(
               quarterTurns: 3,
@@ -309,7 +308,7 @@ class _CameraScreenState extends State<CameraScreen>
               ),
             ),
           ),
-          _actionButton(
+          IconButton(
             onPressed: () {},
             icon: Image.asset(
               "assets/images/camera_flash_on.png",
@@ -320,15 +319,6 @@ class _CameraScreenState extends State<CameraScreen>
         ],
       );
     }
-  }
-
-  Widget _actionButton(
-      {required VoidCallback onPressed, required Widget icon}) {
-    return Expanded(
-      child: Center(
-        child: IconButton(onPressed: onPressed, icon: icon),
-      ),
-    );
   }
 
   @override
