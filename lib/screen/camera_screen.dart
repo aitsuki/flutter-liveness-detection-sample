@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:native_exif/native_exif.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:wakelock/wakelock.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
@@ -23,6 +24,7 @@ class _CameraScreenState extends State<CameraScreen>
   @override
   void initState() {
     super.initState();
+    Wakelock.enable();
     WidgetsBinding.instance.addObserver(this);
     _requestCameraPermission();
   }
@@ -31,6 +33,7 @@ class _CameraScreenState extends State<CameraScreen>
   void dispose() {
     controller?.dispose();
     WidgetsBinding.instance.removeObserver(this);
+    Wakelock.disable();
     super.dispose();
   }
 

@@ -10,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Uint8List? imagebytes;
+  List<Uint8List>? images;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           await Navigator.pushNamed(context, "/camera");
                       if (result != null && result is Uint8List) {
                         setState(() {
-                          imagebytes = result;
+                          images = [result];
                         });
                       }
                     },
@@ -36,13 +36,21 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               width: double.infinity,
               child: FilledButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "/face");
+                onPressed: () async {
+                  final result = await Navigator.pushNamed(context, "/face");
+                  if (result != null) {
+                    setState(() {
+                      images = result as List<Uint8List>;
+                    });
+                  }
                 },
                 child: const Text("Face"),
               ),
             ),
-            if (imagebytes != null) Image.memory(imagebytes!),
+            Expanded(
+                child: ListView(
+              children: images?.map((e) => Image.memory(e)).toList() ?? [],
+            ))
           ],
         ),
       ),
